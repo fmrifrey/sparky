@@ -44,7 +44,7 @@ int gengrads(int id, float dt, float gmax, float smax, /* inputs: trajectory id 
 
 	/* write out the id number to file */
 	FILE *fID_sparky_trajid = fopen("sparky_trajid.txt","w");
-	fprintf(fID_sparkytrajid, "%05d", id);
+	fprintf(fID_sparky_trajid, "%05d", id);
 	fclose(fID_sparky_trajid);
 
 	/* by default - set gradients to 0 to acquire FID only */
