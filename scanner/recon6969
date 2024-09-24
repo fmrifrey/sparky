@@ -1,0 +1,18 @@
+#
+#/bin/tcsh -f
+
+set pfile=`printf '%05d' $1`
+set exam=`printf '%05d' $4`
+set series=`printf '%05d' $5`
+
+mkdir /usr/g/mrraw/sparky_e${exam}_s${series}_${pfile}
+cp /usr/g/bin/scaninfo.txt /usr/g/mrraw/sparky_e${exam}_s${series}_${pfile}/scaninfo${pfile}.txt
+mv /usr/g/mrraw/P${pfile}.7 /usr/g/mrraw/sparky_e${exam}_s${series}_${pfile}
+
+if ( -f /usr/g/bin/sparky_trajid.txt ) then
+	set sid=`cat /usr/g/bin/sparky_trajid.txt`
+	cp /usr/g/bin/sparky_trajectories/sparky${sid}* /usr/g/mrraw/sparky_e${exam}_s${series}_${pfile}
+	rm /usr/g/bin/asl3dflex_scheduleidnum.txt
+endif
+
+xmessage -timeout 2 Moved pfile: P${pfile}.7 and trajectory files to /usr/g/mrraw/sparky_e${exam}_s${series}_${pfile}

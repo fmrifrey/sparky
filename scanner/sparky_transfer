@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for DATA in /usr/g/mrraw/sparky*; do
+	printf 'transferring data... '
+	if rsync --perms --chmod=ugo+rw -r $DATA djfrey@quickstep:~/data/sparky/$(date '+%Y%m%d'); then
+		printf 'SUCCESS\n'
+		rm -rf $DATA
+	else
+		printf 'FAILURE\n'
+	fi
+done
